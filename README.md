@@ -317,3 +317,13 @@ sudo pacman -S pavucontrol
 
 sudo pacman -S fastfetch
 
+configurar som
+sudo modprobe snd_sof_pci_intel_tgl
+sudo modprobe -r snd_sof_pci_intel_tgl snd_sof_pci_intel_cnl snd_sof_pci snd_sof
+sudo pacman -S sof-firmware
+
+configurações de teclado
+setxkbmap -model abnt2 -layout br -variant abnt2
+
+sudo localectl set-x11-keymap br abnt2 abnt2
+reiniciar
