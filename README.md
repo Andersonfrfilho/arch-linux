@@ -219,3 +219,101 @@ grub-mkconfig -o /boot/grub/grub.cfg
 exit
 shutdown -h now
 
+### Após intalação
+nano /etc/locale.conf
+LANG="en_US.UTF-8"
+
+## ativação do network manager
+systemctl enable NetworkManager
+systemctl enable NetworkManager --now
+systemctl enable dhcpcd --now
+
+ping google.com
+
+## intalação dos codecs
+
+pacman -S gstreamer ffmpeg gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav
+
+utiliza opção 2 pipewire-jack
+
+## sincronizar e atualizar o systema
+pacman -Syu
+
+## mudar o referencia dos pacotes
+pacman -S reflector
+reflector -c Brazil --save /etc/pacman.d/mirrorlist
+espelhos do brazil
+
+### instalar o xorg xorg-xinit mesa
+melhor
+ - pacman -S --needed xorg
+
+interface
+xfce _>
+pacman -S xfce4 xfce4-goodies
+pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+
+plasma _>
+sudo pacman -S \
+    plasma kde-applications \
+    qt6-multimedia-ffmpeg \
+    python-pyside6 \
+    noto-fonts ttf-dejavu ttf-liberation ttf-roboto ttf-fira-code \
+    cronie \
+    tesseract-data-por
+⚙️ Pós-instalação rápida
+
+Depois que terminar, habilite os serviços essenciais:
+
+sudo systemctl enable sddm.service
+sudo systemctl enable NetworkManager.service
+sudo systemctl enable cronie.service
+
+
+E inicie o ambiente gráfico com:
+
+startx
+
+
+(se ainda não tiver configurado o ~/.xinitrc, posso te ajudar com isso também)
+pacman -S
+
+
+### firewall
+sudo pacman -S gufw
+
+### instalar google chrome
+🧩 1️⃣ — Instalar via AUR Helper (recomendado)
+
+Se ainda não instalou um AUR helper, o mais popular é o yay.
+
+🔹 Instale o yay
+sudo pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
+🔹 Depois, instale o Chrome
+yay -S google-chrome
+
+
+✅ Isso:
+
+baixa automaticamente o pacote do AUR,
+
+compila,
+
+instala dependências,
+
+e configura atualizações junto com o yay -Syu.
+
+### reiniciar
+shutdown -r now
+
+##### drive de audio
+sudo pacman -S pavucontrol
+
+### instalar o fastfetch
+
+sudo pacman -S fastfetch
+
